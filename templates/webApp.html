@@ -1,0 +1,225 @@
+<!-- 
+Date: 04/13/2021
+Author: Chu-An Tsai
+CS532 Cloud Computing Systems - Semester Project
+A web diagnostic assistant using Machine Learning Algorithms
+Part 2: Web Apllication Interface
+-->
+
+<html>
+	<head>
+	<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+		<title>COVID-19 Diagnostic Assistant</title>
+	</head>
+	<body>
+	<!-- Java Script -->	
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+		
+		<!-- Navbar-->
+		<nav class="navbar navbar-dark bg-dark">
+			<span class="navbar-brand mb-0 h1" style="float:left;">CS532 Cloud Computing Project - A diagnostic assistant using Machine Learning Algorithms</span>
+			<span class="navbar-brand mb-0 h1" style="float:right;">Chu-An Tsai</span>
+		</nav>
+		<div class="container">
+			<br>
+			<!--Form-->
+			<form action = "{{url_for('predict')}}" method ="POST" >
+				<fieldset>
+				<legend>COVID-19 Quick Check - Help doctors in diagnosing coronavirus disease ccaused by SARS-CoV-2</legend><br>
+				 <!--Prediction Result-->
+					  <div id ="result">
+							<h3><strong style="color:red">{{result}}</strong></h3>
+					 </div>
+				  <div class="card card-body" >
+					  <h4>1. Symptoms or diseases</h4><br>
+					  <div class="form-group  row">
+						<div class="col-sm">
+							<label for="breathing problem">Breathing Problem</label>
+							<select class="form-control" id="breathing problem"  name="breathing problem" required>
+							  <option disabled selected value> -- Select an Option -- </option>
+							  <option value = "0">No</option>
+							  <option value = "1">Yes</option>
+							 </select>
+						</div>
+						<div class="col-sm">
+							<label for="fever">Fever (over 100.4°F/38°C)</label>
+							<select class="form-control" id="fever"  name="fever" required>
+							  <option disabled selected value> -- Select an Option -- </option>
+							  <option value = "0">No</option>
+							  <option value = "1">Yes</option>
+							</select>
+					    </div>
+						<div class="col-sm">
+							<label for="dry cough">Dry Cough</label>
+							<select class="form-control" id="dry cough"  name="dry cough" required>
+							  <option disabled selected value> -- Select an Option -- </option>
+							  <option value = "0">No</option>
+							  <option value = "1">Yes</option>
+							</select>
+					    </div>
+						<div class="col-sm">
+							<label for="sore throat">Sore throat</label>
+							<select class="form-control" id="sore throat"  name="sore throat" required>
+							  <option disabled selected value> -- Select an Option -- </option>
+							  <option value = "0">No</option>
+							  <option value = "1">Yes</option>
+							</select>
+					    </div>
+						<div class="col-sm">
+							<label for="running nose">Running Nose</label>
+							<select class="form-control" id="running nose"  name="running nose" required>
+							  <option disabled selected value> -- Select an Option -- </option>
+							  <option value = "0">No</option>
+							  <option value = "1">Yes</option>
+							</select>
+					    </div>
+					  </div>
+					  
+					  <br>
+					  
+					  <div class="form-group  row">
+						<div class="col-sm">
+							<label for="asthma">Asthma</label>
+							<select class="form-control" id="asthma"  name="asthma" required>
+							  <option disabled selected value> -- Select an Option -- </option>
+							  <option value = "0">No</option>
+							  <option value = "1">Yes</option>
+							</select>
+					    </div>
+						<div class="col-sm">
+							<label for="chronic lung disease">Chronic Lung Disease</label>
+							<select class="form-control" id="chronic lung disease"  name="chronic lung disease" required>
+							  <option disabled selected value> -- Select an Option -- </option>
+							  <option value = "0">No</option>
+							  <option value = "1">Yes</option>
+							</select>
+					    </div>
+						<div class="col-sm">
+							<label for="headache">Headache</label>
+							<select class="form-control" id="headache"  name="headache" required>
+							  <option disabled selected value> -- Select an Option -- </option>
+							  <option value = "0">No</option>
+							  <option value = "1">Yes</option>
+							</select>
+					    </div>
+						<div class="col-sm">
+							<label for="heart disease">Heart Disease</label>
+							<select class="form-control" id="heart disease"  name="heart disease" required>
+							  <option disabled selected value> -- Select an Option -- </option>
+							  <option value = "0">No</option>
+							  <option value = "1">Yes</option>
+							</select>
+					    </div>
+						<div class="col-sm">
+							<label for="diabetes">Diabetes</label>
+							<select class="form-control" id="diabetes"  name="diabetes" required>
+							  <option disabled selected value> -- Select an Option -- </option>
+							  <option value = "0">No</option>
+							  <option value = "1">Yes</option>
+							</select>
+					    </div>
+					   </div>
+					  
+					  <br>
+					  
+					  <div class="form-group  row">
+						<div class="col-sm-3">
+							<label for="hyper tension">Hyper Tension</label>
+							<select class="form-control" id="hyper tension"  name="hyper tension" required>
+							  <option disabled selected value> -- Select an Option -- </option>
+							  <option value = "0">No</option>
+							  <option value = "1">Yes</option>
+							</select>
+						</div>
+						<div class="col-sm-3">
+							<label for="fatigue">Fatigue</label>
+							<select class="form-control" id="fatigue"  name="fatigue" required>
+							  <option disabled selected value> -- Select an Option -- </option>
+							  <option value = "0">No</option>
+							  <option value = "1">Yes</option>
+							</select>
+					    </div>
+						<div class="col-sm-4">
+							<label for="gastrointestinal">Gastrointestinal (nausea, vomiting or diarrhea)</label>
+							<select class="form-control" id="gastrointestinal"  name="gastrointestinal" required>
+							  <option disabled selected value> -- Select an Option -- </option>
+							  <option value = "0">No</option>
+							  <option value = "1">Yes</option>
+							</select>
+					    </div>
+					  </div>
+					  
+					  <br>
+					  <h4>2. Social activities and others</h4><br>
+					  
+					  <div class="form-group  row">
+						<div class="col-sm-3">
+							<label for="abroad travel	">Abroad travel	</label>
+							<select class="form-control" id="abroad travel"  name="abroad travel" required>
+							  <option disabled selected value> -- Select an Option -- </option>
+							  <option value = "0">No</option>
+							  <option value = "1">Yes</option>
+							 </select>
+						</div>
+						<div class="col-sm-3">
+							<label for="contact covid">Contact with COVID Patient</label>
+							<select class="form-control" id="contact covid"  name="contact covid" required>
+							  <option disabled selected value> -- Select an Option -- </option>
+							  <option value = "0">No</option>
+							  <option value = "1">Yes</option>
+							</select>
+					    </div>
+						<div class="col-sm-3">
+							<label for="large gathering">Attended Large Gathering</label>
+							<select class="form-control" id="large gathering"  name="large gathering" required>
+							  <option disabled selected value> -- Select an Option -- </option>
+							  <option value = "0">No</option>
+							  <option value = "1">Yes</option>
+							</select>
+					    </div>
+					  </div>
+					  
+					  <br>
+						
+					  <div class="form-group  row">
+						<div class="col-sm-4">
+							<label for="public exposure">Visited Public Exposed Places</label>
+							<select class="form-control" id="public exposure"  name="public exposure" required>
+							  <option disabled selected value> -- Select an Option -- </option>
+							  <option value = "0">No</option>
+							  <option value = "1">Yes</option>
+							</select>
+					    </div>
+						<div class="col-sm-4">
+							<label for="family exposure">Family working in Public Exposed Places</label>
+							<select class="form-control" id="family exposure"  name="family exposure" required>
+							  <option disabled selected value> -- Select an Option -- </option>
+							  <option value = "0">No</option>
+							  <option value = "1">Yes</option>
+							</select>
+					    </div>
+					  </div>
+					  
+					  <br>
+					  
+					  <div class="form-group">
+						<input class="btn btn-primary" type="submit" value="Result">
+					  </div>
+					  
+					 
+				     </div>
+			 </fieldset>
+			</form>
+			
+		</div>
+		
+	</body>
+</html>
+
