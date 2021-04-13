@@ -1,5 +1,5 @@
 Flask
-Numpy
-Pandas
-Sklearn
-Pickle
+numpy
+pandas
+sklearn
+pickle
