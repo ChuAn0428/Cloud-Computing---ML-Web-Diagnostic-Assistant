@@ -1,1 +1,1 @@
-# Cloud-Computing-Project---ML-Web-Diagnostic-Assistant
+# Cloud Computing Project - ML Web Diagnostic Assistant
