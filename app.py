@@ -37,7 +37,7 @@ def predict():
     # Check the output values and retrive the result with html tag based on the value
     if output == 1:
         return render_template('webApp.html', 
-                               result = 'This patient is LIKELY to have Covid-19!   Please proceed further examination.')
+                               result = 'This patient is LIKELY to have Covid-19!   Please proceed a further examination.')
     else:
         return render_template('webApp.html', 
                                result = 'This patient is NOT likely to have Covid-19!')
